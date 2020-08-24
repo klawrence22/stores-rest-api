@@ -8,6 +8,7 @@ from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
+from models.store import StoreModel
 
 app = Flask(__name__)
 
@@ -35,5 +36,7 @@ if __name__ == '__main__':
         @app.before_first_request
         def create_tables():
             db.create_all()
+    first_store = StoreModel("store1")
+    first_store.save_to_db()
 
     app.run(port=5000)
